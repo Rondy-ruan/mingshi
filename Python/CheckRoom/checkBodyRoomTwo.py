@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 # ============================================================
-# @Date    : 2022/12/30
+# @Date    : 2022/12/23
 # @Author  : rondy
 # @File    : checkBodyRoomTwo.py
 # @IDE     : 
@@ -19,10 +19,12 @@ import datetime
 import subprocess
 
 from tkinter import *
+
 from PIL import Image, ImageTk
 import time
 from threading import Timer
-from tkinter import Toplevel 
+from tkinter import Toplevel
+import tkinter.ttk
 
 from watchdog.observers import Observer
 from watchdog.events import *
@@ -170,7 +172,21 @@ def PlaySound():
     if os.path.isfile(soundFile) :
         os.startfile(soundFile)
 
+def ProcessTime(window,showTime):#进度条，window：依赖的窗口，showTime：进度条运行的时间
+    
+    ##determinate：一个指针会从起点移至终点，通常当我们知道所需工作时间时，可以使用此模式，这是默认模式
+    ##indeterminate：一个指针会在起点和终点间来回移动，通常当我们不知道工作所需时间时，可以使用此模式
 
+    progressbarOne = tkinter.ttk.Progressbar(window,mode='determinate',length=1280)    
+    progressbarOne.pack(side=tkinter.BOTTOM)
+
+    progressbarOne['maximum'] = showTime
+    # 进度值初始值
+    progressbarOne['value'] = 0
+    for i in range(showTime):
+        time.sleep(1)
+        progressbarOne['value'] += 1
+        window.update()
 def DoBodyFatCheck():
     print(flag.get())
     if flag.get() == False:
@@ -208,6 +224,7 @@ def DoBodyFatCheck():
     state['BodyFat'] = 'red'
     skin_Button= Button(checkingWindow, text="关闭检测", width=38, height=3, font="宋体 20 bold", command=lambda: DoClose(state)) 
     skin_Button.place(x=300, y=600)
+    
     ###启动串口接受身高体重体脂程序
     file = "体脂检测.exe"
     startupinfo = subprocess.STARTUPINFO()
@@ -236,7 +253,7 @@ def DoBodyFatCheck():
     userBodyData_lift = Label(userUpdateFrame, text=bodyfatData[2], anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
     userBodyData_lift.place(x=160, y=500)
 
-    
+    ProcessTime(checkingWindow,10)#10秒进度条
     
     checkingWindow.destroy()
     state['BodyFat'] = 'red'
