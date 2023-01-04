@@ -1,3 +1,16 @@
+# !/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+# ============================================================
+# @Date    : 2022/12/30
+# @Author  : rondy
+# @File    : checkBodyRoomTwo.py
+# @IDE     : 
+# @Func    : 检测仓用户信息操作界面以及显示当前进度界面
+# ============================================================
+"""
+
+
 import tkinter
 import threading
 import os,sys
@@ -566,6 +579,18 @@ userBodyData_lift = Label(userUpdateFrame, text="体脂：", anchor='w',width=20
 userBodyData_lift.place(x=160, y=500)
 userBodyData_lift = Label(userUpdateFrame, text="水分：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
 userBodyData_lift.place(x=160, y=520)
+userBodyData_lift = Label(userUpdateFrame, text="肌肉值：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyData_lift.place(x=160, y=540)
+userBodyData_lift = Label(userUpdateFrame, text="骨骼量：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyData_lift.place(x=160, y=560)
+userBodyData_lift = Label(userUpdateFrame, text="卡路里：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyData_lift.place(x=160, y=580)
+userBodyData_lift = Label(userUpdateFrame, text="BMI值：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyData_lift.place(x=160, y=600)
+userBodyData_lift = Label(userUpdateFrame, text="脉搏：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyData_lift.place(x=160, y=620)
+userBodyData_lift = Label(userUpdateFrame, text="血氧：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyData_lift.place(x=160, y=640)
 
 ##userBodyOtherDataStr_lift = GetBodyOtherData()
 ##userBodyOtherData_lift = Message(userUpdateFrame, text=userBodyOtherDataStr_lift, aspect='150', bg='white', font="宋体 12 bold")
@@ -575,13 +600,52 @@ userBodyData_lift.place(x=160, y=520)
 
 
 #在右边显示身体检测信息
-userBodyDataStr_right = GetBodyData()
-userBodyData_right = Message(userUpdateFrame, text=userBodyDataStr_right,aspect='1500', bg='white', font="宋体 14 bold")
+
+
+userBodyData_right = Label(userUpdateFrame, text="体重：", anchor='w',width=20,  bg='white', height=1, font="宋体 14 bold")
 userBodyData_right.place(x=700, y=300)
 
-userBodyOtherDataStr_right = GetBodyOtherData()
-userBodyOtherData_right = Message(userUpdateFrame, text=userBodyOtherDataStr_right, aspect='150', bg='white', font="宋体 12 bold")
+userBodyData_right = Label(userUpdateFrame, text="补充：", anchor='w',width=20,  bg='white', height=1, font="宋体 14 bold")
+userBodyData_right.place(x=700, y=320)
+
+userBodyData_right = Message(userUpdateFrame, text="收缩压：\n扩张压：\n心率：", aspect='1500', bg='white', font="宋体 14 bold")
+userBodyData_right.place(x=695, y=340)
+
+userBodyData_right = Label(userUpdateFrame, text="血糖：", anchor='w',width=20,  bg='white', height=1, font="宋体 14 bold")
+userBodyData_right.place(x=700, y=400)
+
+
+
+##userBodyDataStr_right = GetBodyData()
+##userBodyData_right = Message(userUpdateFrame, text=userBodyDataStr_right,aspect='1500', bg='white', font="宋体 14 bold")
+##userBodyData_right.place(x=700, y=300)
+##
+##userBodyOtherDataStr_right = GetBodyOtherData()
+##userBodyOtherData_right = Message(userUpdateFrame, text=userBodyOtherDataStr_right, aspect='150', bg='white', font="宋体 12 bold")
+##userBodyOtherData_right.place(x=700, y=460)
+
+userBodyOtherData_right = Label(userUpdateFrame, text="其他：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
 userBodyOtherData_right.place(x=700, y=460)
+
+userBodyOtherData_right = Label(userUpdateFrame, text="身高：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyOtherData_right.place(x=760, y=480)
+userBodyOtherData_right = Label(userUpdateFrame, text="体脂：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyOtherData_right.place(x=760, y=500)
+userBodyOtherData_right = Label(userUpdateFrame, text="水分：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyOtherData_right.place(x=760, y=520)
+userBodyOtherData_right = Label(userUpdateFrame, text="肌肉值：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyOtherData_right.place(x=760, y=540)
+userBodyOtherData_right = Label(userUpdateFrame, text="骨骼量：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyOtherData_right.place(x=760, y=560)
+userBodyOtherData_right = Label(userUpdateFrame, text="卡路里：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyOtherData_right.place(x=760, y=580)
+userBodyOtherData_right = Label(userUpdateFrame, text="BMI值：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyOtherData_right.place(x=760, y=600)
+userBodyOtherData_right = Label(userUpdateFrame, text="脉搏：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyOtherData_right.place(x=760, y=620)
+userBodyOtherData_right = Label(userUpdateFrame, text="血氧：", anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+userBodyOtherData_right.place(x=760, y=640)
+
 
 
 #显示效果医嘱
