@@ -237,25 +237,25 @@ def DoBodyFatCheck():
 
     bodyfatData = GetBodyFatResult()
     
-    checkingLabel = Label(checkingWindow, text="结果如下：  ", width=20, height=1, anchor='w', bg='yellow', font="宋体 50 bold")
+    checkingLabel = Label(checkingWindow, text="结果如下：  ", width=28, height=1, anchor='w', bg='yellow', font="宋体 50 bold")
     checkingLabel.place(x=300, y=300)
-    checkingLabel = Label(checkingWindow, text=bodyfatData, width=20, height=4, anchor='w', bg='yellow', font="宋体 30 bold")
+    checkingLabel = Label(checkingWindow, text=bodyfatData, width=28, height=4, anchor='w', bg='yellow', font="宋体 30 bold")
     checkingLabel.place(x=300, y=400)
 
     bodyfatData = bodyfatData.split('\n')
     ##体重
-    userBodyData_lift = Label(userUpdateFrame, text=bodyfatData[1], anchor='w',width=20,  bg='white', height=1, font="宋体 14 bold")
+    userBodyData_lift = Label(userUpdateFrame, text=bodyfatData[1], anchor='w',width=28,  bg='white', height=1, font="宋体 14 bold")
     userBodyData_lift.place(x=100, y=300)
     ##身高
-    userBodyData_lift = Label(userUpdateFrame, text=bodyfatData[0], anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+    userBodyData_lift = Label(userUpdateFrame, text=bodyfatData[0], anchor='w',width=28,  bg='white', height=1, font="宋体 12 bold")
     userBodyData_lift.place(x=160, y=480)
     #体脂
-    userBodyData_lift = Label(userUpdateFrame, text=bodyfatData[2], anchor='w',width=20,  bg='white', height=1, font="宋体 12 bold")
+    userBodyData_lift = Label(userUpdateFrame, text=bodyfatData[2], anchor='w',width=28,  bg='white', height=1, font="宋体 12 bold")
     userBodyData_lift.place(x=160, y=500)
 
     ProcessTime(checkingWindow,10)#10秒进度条
-    
     checkingWindow.destroy()
+    
     state['BodyFat'] = 'red'
     UpdatecCanvas(state)
     
@@ -350,11 +350,17 @@ def DoBloodPressureCheck():
     
     checkingLabel = Label(checkingWindow, text="结果如下：  ", width=20, height=1, anchor='w', bg='yellow', font="宋体 50 bold")
     checkingLabel.place(x=300, y=300)
-    checkingLabel = Label(checkingWindow, text=GetBloodPressureResult(), width=20, height=4, anchor='w', bg='yellow', font="宋体 30 bold")
+    checkingLabel = Label(checkingWindow, text=GetBloodPressureResult(), width=28, height=4, anchor='w', bg='yellow', font="宋体 30 bold")
     checkingLabel.place(x=300, y=400)
     userBodyData_lift = Message(userUpdateFrame, text=GetBloodPressureResult(), aspect='1500', bg='white', font="宋体 14 bold")
     userBodyData_lift.place(x=95, y=340)
+    
 
+    ProcessTime(checkingWindow,10)#10秒进度条
+    checkingWindow.destroy()
+    
+    state['BodyFat'] = 'red'
+    UpdatecCanvas(state)
     
     flag.set(False)
 
@@ -425,6 +431,95 @@ def DoInfraredRay():
         UpdatecCanvas(state)
         checkingWindow.destroy()
         checkingWindow.update()
+
+#############################################################
+#按键颜色及选择项目
+g_colorState = [0, 0, 0, 0, 0, 0]
+g_selectItem=["", "", "", "", "", ""]
+class ButtonColor():
+    global g_selectItem
+    global g_colorState
+    def DoBodyFatColor(self):           
+        if g_colorState[0] == 0:
+            body_fat_Button.configure(bg="yellow")
+            g_colorState[0] = 1
+            g_selectItem[0] = 'DoBodyFat'
+        else:
+            body_fat_Button.configure(bg="gray")
+            g_colorState[0] = 0
+            g_selectItem[0] = ''
+        
+    def DoBloodFatColor(self):           
+        if g_colorState[1] == 0:
+            blood_fat_Button.configure(bg="yellow")
+            g_colorState[1] = 1
+            g_selectItem[1] = 'DoBloodFat'
+        else:
+            blood_fat_Button.configure(bg="gray")
+            g_colorState[1] = 0
+            g_selectItem[1] = ''
+            
+    def DoBloodPressureColor(self):           
+        if g_colorState[2] == 0:
+            blood_pressure_Button.configure(bg="yellow")
+            g_colorState[2] = 1
+            g_selectItem[2] = 'DoBloodPressure'
+        else:
+            blood_pressure_Button.configure(bg="gray")
+            g_colorState[2] = 0
+            g_selectItem[2] = ''
+            
+    def DoSkinColor(self):           
+        if g_colorState[3] == 0:
+            skin_Button.configure(bg="yellow")
+            g_colorState[3] = 1
+            g_selectItem[3] = 'DoSkin'
+        else:
+            skin_Button.configure(bg="gray")
+            g_colorState[3] = 0
+            g_selectItem[3] = ''
+            
+    def DoTakePhotoColor(self):           
+        if g_colorState[4] == 0:
+            take_photo_Button.configure(bg="yellow")
+            g_colorState[4] = 1
+            g_selectItem[4] = 'DoTakePhoto'
+        else:
+            take_photo_Button.configure(bg="gray")
+            g_colorState[4] = 0
+            g_selectItem[4] = ''
+            
+    def DoInfraredRayColor(self):           
+        if g_colorState[5] == 0:
+            infrared_ray_Button.configure(bg="yellow")
+            g_colorState[5] = 1
+            g_selectItem[5] = 'DoInfraredRay'
+        else:
+            infrared_ray_Button.configure(bg="gray")
+            g_colorState[5] = 0
+            g_selectItem[5] = ''
+
+
+#################################
+#根据选择的项目，自动进行
+def StartDoAllCheck():
+    global g_selectItem
+    if g_selectItem[0] == 'DoBodyFat':
+        DoBodyFatCheck()
+    if g_selectItem[1] == 'DoBloodFat':
+        DoBloodfatCheck()
+    if g_selectItem[2] == 'DoBloodPressure':
+        DoBloodPressureCheck()
+    if g_selectItem[3] == 'DoSkin':
+        DoSkinCheck()
+    if g_selectItem[4] == 'DoTakePhoto':
+        DoTakePhoto()
+    if g_selectItem[5] == 'DoInfraredRay':
+        DoInfraredRay()
+    
+
+
+
 
 ######################################################################################################################################################################################################################################################################
 #获取用户基本信息   "姓名："+"\t性别："+"\t年龄："+"\t电话："
@@ -678,34 +773,36 @@ usedDataLabel.place(x=0, y=990)
 
 
 #用户操作背景框
+
+Bbc = ButtonColor()
+
 userOperationFrame = Frame(doWindow, bg='white', width=600, height=1080) 
 userOperationFrame.place(x=1300, y=10)
 
-word_2=Label(userOperationFrame, text='用户操作区', width=38, height=1, font="宋体 20 bold")
+word_2=Label(userOperationFrame, text='用户选择区', width=38, height=1, font="宋体 20 bold")
 word_2.place(x=10, y=10)
 
 
-body_fat_Button= Button(userOperationFrame, text="体脂检测", width=38, height=3, font="宋体 20 bold", command=DoBodyFatCheck) 
-body_fat_Button.place(x=10, y=80)
+body_fat_Button= Button(userOperationFrame, text="体脂检测", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoBodyFatColor) 
+body_fat_Button.place(x=10, y=60)
 
-blood_fat_Button= Button(userOperationFrame, text="血脂检测", width=38, height=3, font="宋体 20 bold", command=DoBloodfatCheck) 
-blood_fat_Button.place(x=10, y=230)
+blood_fat_Button= Button(userOperationFrame, text="血脂检测", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoBloodFatColor) 
+blood_fat_Button.place(x=10, y=200)
 
-blood_pressure_Button= Button(userOperationFrame, text="血压检测", width=38, height=3, font="宋体 20 bold", command=DoBloodPressureCheck) 
-blood_pressure_Button.place(x=10, y=380)
+blood_pressure_Button= Button(userOperationFrame, text="血压检测", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoBloodPressureColor) 
+blood_pressure_Button.place(x=10, y=350)
 
-skin_Button= Button(userOperationFrame, text="皮肤检测", width=38, height=3, font="宋体 20 bold", command=DoSkinCheck) 
-skin_Button.place(x=10, y=530)
+skin_Button= Button(userOperationFrame, text="皮肤检测", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoSkinColor) 
+skin_Button.place(x=10, y=500)
 
-take_photo_Button= Button(userOperationFrame, text="照相", width=38, height=3, font="宋体 20 bold", command=DoTakePhoto) 
-take_photo_Button.place(x=10, y=680)
+take_photo_Button= Button(userOperationFrame, text="照相", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoTakePhotoColor) 
+take_photo_Button.place(x=10, y=650)
 
-infrared_ray_Button= Button(userOperationFrame, text="红外检测", width=38, height=3, font="宋体 20 bold", command=DoInfraredRay) 
-infrared_ray_Button.place(x=10, y=830)
+infrared_ray_Button= Button(userOperationFrame, text="红外检测", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoInfraredRayColor) 
+infrared_ray_Button.place(x=10, y=800)
 
-##show_Button= Button(userOperationFrame, text="打印结果", width=38, height=3, font="宋体 20 bold", command=DoBodyFat) 
-##show_Button.place(x=10, y=980)
-
+show_Button= Button(userOperationFrame, text="开始检测", width=38, height=3, font="宋体 20 bold", command=StartDoAllCheck) 
+show_Button.place(x=10, y=950)
 
 
 
