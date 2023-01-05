@@ -108,7 +108,7 @@ def StartDoBodyFat():
                 print("体脂：%s" % bodyfatData)
                 save_result = "身高：\t\t" +heightData +"\n" +"体重：\t\t" +weightData+"\n"+"体脂：\t\t"+bodyfatData                
                 SaveUserData(save_result)   #保存数据到文件
-##                break
+                break
 
         ser.close()
         
