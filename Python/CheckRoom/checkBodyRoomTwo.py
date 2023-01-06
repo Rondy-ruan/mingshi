@@ -504,6 +504,12 @@ class ButtonColor():
 #根据选择的项目，自动进行
 def StartDoAllCheck():
     global g_selectItem
+
+    #开始时间
+    startTime = '时间：'+TimeShow()
+    usedTimeLabel_lift = Label(userUpdateFrame, text=startTime, width=36, height=1, anchor='center', bg='white', font="宋体 10 bold")
+    usedTimeLabel_lift.place(x=100, y=40)
+    
     if g_selectItem[0] == 'DoBodyFat':
         DoBodyFatCheck()
     if g_selectItem[1] == 'DoBloodFat':
@@ -626,12 +632,7 @@ userUpdateFrame.place(x=0, y=105)
 usedDataLabel_lift = Label(userUpdateFrame, text="理疗前状态", width=30, height=1, anchor='center', bg='white', font="宋体 14 bold")
 usedDataLabel_lift.place(x=100, y=10)
 
-#开始时间
-startTime = '时间：'+TimeShow()
-usedTimeLabel_lift = Label(userUpdateFrame, text=startTime, width=36, height=1, anchor='center', bg='white', font="宋体 10 bold")
-usedTimeLabel_lift.place(x=100, y=40)
-
-
+#
 usedDataLabel_right = Label(userUpdateFrame, text="理疗后状态", width=30, height=1, anchor='center', bg='white', font="宋体 14 bold")
 usedDataLabel_right.place(x=700, y=10)
 #结束时间
@@ -779,30 +780,32 @@ Bbc = ButtonColor()
 userOperationFrame = Frame(doWindow, bg='white', width=600, height=1080) 
 userOperationFrame.place(x=1300, y=10)
 
-word_2=Label(userOperationFrame, text='用户选择区', width=38, height=1, font="宋体 20 bold")
+word_2=Label(userOperationFrame, text='用户选择操作区', width=38, height=1, font="宋体 20 bold")
 word_2.place(x=10, y=10)
 
 
 body_fat_Button= Button(userOperationFrame, text="体脂检测", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoBodyFatColor) 
 body_fat_Button.place(x=10, y=60)
 
+infrared_ray_Button= Button(userOperationFrame, text="红外检测", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoInfraredRayColor) 
+infrared_ray_Button.place(x=10, y=200)
+
+
 blood_fat_Button= Button(userOperationFrame, text="血脂检测", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoBloodFatColor) 
-blood_fat_Button.place(x=10, y=200)
+blood_fat_Button.place(x=10, y=340)
 
 blood_pressure_Button= Button(userOperationFrame, text="血压检测", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoBloodPressureColor) 
-blood_pressure_Button.place(x=10, y=350)
+blood_pressure_Button.place(x=10, y=480)
 
 skin_Button= Button(userOperationFrame, text="皮肤检测", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoSkinColor) 
-skin_Button.place(x=10, y=500)
+skin_Button.place(x=10, y=620)
 
-take_photo_Button= Button(userOperationFrame, text="照相", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoTakePhotoColor) 
-take_photo_Button.place(x=10, y=650)
+take_photo_Button= Button(userOperationFrame, text="照相检测", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoTakePhotoColor) 
+take_photo_Button.place(x=10, y=760)
 
-infrared_ray_Button= Button(userOperationFrame, text="红外检测", width=38, height=3, font="宋体 20 bold", bg="gray", command=Bbc.DoInfraredRayColor) 
-infrared_ray_Button.place(x=10, y=800)
 
 show_Button= Button(userOperationFrame, text="开始检测", width=38, height=3, font="宋体 20 bold", command=StartDoAllCheck) 
-show_Button.place(x=10, y=950)
+show_Button.place(x=10, y=900)
 
 
 
@@ -941,21 +944,20 @@ def ProjectList():
     word_2=Label(showWindow, text='第一步：体脂检测', width=15, height=1, font="宋体 40 bold")
     word_2.place(x=270, y=500)
 
-    word_2=Label(showWindow, text='第二步：血脂检测', width=15, height=1, font="宋体 40 bold")
+    word_2=Label(showWindow, text='第二步：红外检测', width=15, height=1, font="宋体 40 bold")
     word_2.place(x=270, y=655)
 
-    word_2=Label(showWindow, text='第三步：血压检测', width=15, height=1, font="宋体 40 bold")
+    word_2=Label(showWindow, text='第三步：血脂检测', width=15, height=1, font="宋体 40 bold")
     word_2.place(x=270, y=820)
 
-    word_2=Label(showWindow, text='第四步：皮肤检测', width=15, height=1, font="宋体 40 bold")
+    word_2=Label(showWindow, text='第四步：血压检测', width=15, height=1, font="宋体 40 bold")
     word_2.place(x=1270, y=500)
 
-    word_2=Label(showWindow, text='第五步：照相检测', width=15, height=1, font="宋体 40 bold")
+    word_2=Label(showWindow, text='第五步：皮肤检测', width=15, height=1, font="宋体 40 bold")
     word_2.place(x=1270, y=655)
 
-    word_2=Label(showWindow, text='第六步：红外检测', width=15, height=1, font="宋体 40 bold")
+    word_2=Label(showWindow, text='第六步：照相检测', width=15, height=1, font="宋体 40 bold")
     word_2.place(x=1270, y=820)
-
 
 
 
